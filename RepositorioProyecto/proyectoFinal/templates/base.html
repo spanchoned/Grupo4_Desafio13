@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>PROYECTO 2023</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+</head>
+<body class="fondo">
+
+	<div class="container">
+		<div class="row">
+			<img src="{% static 'img/logo.png' %}" width="100" height="100">
+			<h1 class="titulo ml-3">PROYECTO INFORMATORIO 2023</h1>
+		</div>
+		<div>
+			<a href="{% url 'home' %}">Home</a>
+			{% if user.is_authenticated %}
+				HOLA COMO ESTAS? {{user.username}}
+				<a href="{% url 'logout' %}">Salir</a>
+			{% else %}
+				<a href="{% url 'login' %}">Login</a>
+				<a href="{% url 'usuarios:registrar' %}">registrame</a>
+			{% endif %}
+			<a href="{% url 'noticias:crear_noticia' %}">Crear Noticia</a>
+			<a href="{% url 'noticias:listar_noticias' %}">LISTAR</a>
+		</div>
+	</div>
+	<div class="container p-3">
+	{% block contenido %}
+
+	{% endblock contenido %}
+	</div>
+
+</body>
+</html>
